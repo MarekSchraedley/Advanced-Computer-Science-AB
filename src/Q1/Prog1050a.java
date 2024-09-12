@@ -44,7 +44,11 @@ public class Prog1050a {
             System.out.println("High priority sales shipped more than 3 days late: " + computeHighPriorityLateSales(records));
             System.out.println("Country with highest profit on personal care items: " + computeHighestProfit(records, 2, "Personal Care"));
             System.out.println("Region that bought the most snacks: " + computeMaxByField(records, 2, "Snacks", 0));
-            System.out.println("Total records of sales to african nations: " +);
+            System.out.println("Total records of sales to african nations: " + computeSalesToAfrican(records, 0, "Sub-Saharan Africa"));
+            System.out.println("Removing all sales to kuwait.");
+            removeSalesToKuwait(records, 1, "Kuwait");
+
+
         }
     }
 
@@ -173,6 +177,24 @@ public class Prog1050a {
             if (record.fields[fIndex].equalsIgnoreCase(itemType)) {
                 count++;
             }
+        }
+        return count;
+    }
+
+    public static void removeSalesToKuwait(List<SalesRecord> records, int fIndex, String itemType) {
+        for (int lcv = 0; lcv < records.size()-1; lcv++) {
+            if (records.get(lcv).fields[fIndex].equalsIgnoreCase(itemType)) {
+                records.remove(lcv);
+                lcv--;
+            }
+        }
+
+    }
+
+    public static void limit(List<SalesRecord> records) {
+        for (var record : records) {
+            if (record.fields[2].equalsIgnoreCase("Cosmetics")) {
+                record.fields[8] = "100";
         }
     }
 

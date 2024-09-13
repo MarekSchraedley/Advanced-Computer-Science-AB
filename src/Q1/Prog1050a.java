@@ -14,6 +14,7 @@ class SalesRecord {
 }
 //
 public class Prog1050a {
+    public static double profitLost = 0;
     public static List<SalesRecord> loadSalesData(String filepath) {
         var records = new ArrayList<SalesRecord>();
         try {
@@ -47,6 +48,9 @@ public class Prog1050a {
             System.out.println("Total records of sales to african nations: " + computeSalesToAfrican(records, 0, "Sub-Saharan Africa"));
             System.out.println("Removing all sales to kuwait.");
             removeSalesToKuwait(records, 1, "Kuwait");
+            limitSalesCosmetics(records);
+            removeSalesToAfrica(records);
+            System.out.println("The company lost " + moneyFormat.format(profitLost) + " with the trade war with africa.");
 
 
         }
@@ -191,11 +195,32 @@ public class Prog1050a {
 
     }
 
-    public static void limit(List<SalesRecord> records) {
+    public static void limitSalesCosmetics(List<SalesRecord> records) {
+        double temp = 0;
         for (var record : records) {
             if (record.fields[2].equalsIgnoreCase("Cosmetics")) {
+                temp = Double.parseDouble(record.fields[13]);
                 record.fields[8] = "100";
+                record.fields[11] = Double.toString(Double.parseDouble(record.fields[9]) * 100);
+                record.fields[12] = Double.toString(Double.parseDouble(record.fields[10]) * 100);
+                record.fields[13] = Double.toString(Double.parseDouble(record.fields[11]) - Double.parseDouble(record.fields[12]));
+                profitLost += temp - Double.parseDouble(record.fields[13]);
+            }
+
         }
     }
+
+    public static void removeSalesToAfrica(List<SalesRecord> records) {
+        for (int lcv = 0; lcv < records.size()-1; lcv++) {
+            if (records.get(lcv).fields[0].equalsIgnoreCase("Sub-Saharan Africa") && records.get(lcv).fields[4].equalsIgnoreCase("L")) {
+                profitLost += Double.parseDouble(records.get(lcv).fields[13]);
+                records.remove(lcv);
+                lcv--;
+            }
+        }
+    }
+
+
+
 
 }

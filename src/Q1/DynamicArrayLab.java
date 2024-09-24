@@ -23,6 +23,6 @@ public class DynamicArrayLab {
         end = System.nanoTime();
         System.out.println("Dynamic Array add: " + (end-start)/1e6 + " ms" );
 
-
+    //todo check against arraylist
     }
 }

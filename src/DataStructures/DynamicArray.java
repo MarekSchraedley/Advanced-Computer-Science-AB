@@ -43,9 +43,9 @@ public class DynamicArray<T extends Comparable<T>> implements Iterable<T> {
     public void set(int index, T element) {array[index] = element;}
     public int size() {return size;}
     public boolean isEmpty() {return size == 0; }
-    public int indexOf(T element) { return SearchAlgorithims.binarySearch(array, element); }
+    public int indexOf(T element) { return SearchAlgorithims.linearSearch(array, element); }
     public boolean contains(T element) {return indexOf(element) != -1;}
-    public void sort() { SortingAlgorithms.swap(array); }
+    public void sort() { SortingAlgorithms.insertionSort(array, size); }
     public String toString() {return Arrays.toString(Arrays.copyOf(array, size)); }
 
     public Iterator<T> iterator() {
@@ -59,6 +59,6 @@ public class DynamicArray<T extends Comparable<T>> implements Iterable<T> {
             public T next() {
                 return array[index++];
             }
-        }
+        };
     }
 }

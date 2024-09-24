@@ -1,6 +1,6 @@
 package Q1;
 import java.util.Scanner;
-public class LP313 {
+public class LP33 {
     public static void main(String[] args) {
         var scanner = new Scanner(System.in);
         String[] array = {"Books", "Supplies", "Housing", "Tuition", "Personal expenses", "Meal Plan"};

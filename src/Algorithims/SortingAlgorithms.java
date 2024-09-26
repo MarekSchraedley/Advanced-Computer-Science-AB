@@ -31,7 +31,19 @@ public class SortingAlgorithms {
     }
 
     public static <T extends Comparable<T>> void selectionSort(T[] arr) {
-        //Todo
+        int minIndex = 0;
+        T temp = null;
+        for (int i = 0; i < arr.length; i++) {
+            minIndex = i;
+            for (int j = i; j < arr.length; j++) {
+                if(arr[j].compareTo(arr[minIndex]) > 0) {
+                    minIndex = j;
+                }
+            }
+            temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[i] = temp;
+        }
     }
 
 }

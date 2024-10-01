@@ -13,10 +13,11 @@ public class Pelican504 {
 //pre Java 5.0, System.out.println(binarySearch(iw, new Integer(22)));
         System.out.println(binarySearch(iw, 89)); //11
         System.out.println(binarySearch(iw, -100)); //-1
-        System.out.println(binarySearch(iw, 72); //-1
+        System.out.println(binarySearch(iw, 72)); //-1
         System.out.println(binarySearch(iw, 102)); //-1
     }
     private static int binarySearch(Object a[], Object srchVal)
     {
+        return 0;
     }
 }

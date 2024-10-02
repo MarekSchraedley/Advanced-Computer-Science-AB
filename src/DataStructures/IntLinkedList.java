@@ -38,6 +38,7 @@ public class IntLinkedList implements Iterable<Integer> {
         current.next = newNode;
     }
 
+
     public void print() {
         Node current = head;
         while (current != null) {
@@ -60,4 +61,48 @@ public class IntLinkedList implements Iterable<Integer> {
             }
         };
     }
+
+    public int getCount() {
+        Node current = head;
+        int count = 0;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
+    }
+
+    public boolean add(int num, int spot) {
+        var newNode = new Node(spot);
+        Node current = head;
+        int count = 0;
+        while (count < spot && current != null) {
+            count++;
+            current = current.next;
+        }
+        if (current == null) {return false;}
+        else {
+            current.next = newNode;
+            return true;
+        }
+    }
+
+    public boolean isEmpty() {
+        return head == null;
+    }
+
+    public int getFront() {
+        return head.data;
+
+    }
+
+    public int getLast() {
+        var current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+
 }

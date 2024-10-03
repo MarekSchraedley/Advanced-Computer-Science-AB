@@ -76,12 +76,17 @@ public class IntLinkedList implements Iterable<Integer> {
         var newNode = new Node(spot);
         Node current = head;
         int count = 0;
+        if (spot == 0) {
+            newNode.next = head;
+            head = newNode;
+        }
         while (count < spot && current != null) {
             count++;
             current = current.next;
         }
         if (current == null) {return false;}
         else {
+            newNode.next = current.next;
             current.next = newNode;
             return true;
         }
@@ -104,5 +109,58 @@ public class IntLinkedList implements Iterable<Integer> {
         return current.data;
     }
 
+    public int getByIndex(int spot) {
+        var newNode = new Node(spot);
+        Node current = head;
+        int count = 0;
+        while (count < spot && current != null) {
+            count++;
+            current = current.next;
+        }
+        if (current == null) {
+            return -1;
+        } else {
+            return current.data;
+        }
+    }
+
+    public void removeFirst() {
+        head = head.next;
+    }
+
+    public void removeLast() {
+        var current = head;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current = null;
+    }
+    public int countLess10()  {
+        var current = head;
+        int count = 0;
+        while (current.next != null) {
+            if (current.data < 10) {
+                count++;
+            }
+            current = current.next;
+        }
+        return count;
+    }
+
+    public void removeIndex(int pos) {
+        Node current = head;
+        int count = 0;
+        while (count < pos-1 && current != null) {
+            count++;
+            current = current.next;
+        }
+        if (current.next != null) {
+            current.next = current.next.next;
+        }
+    }
+
+    public void clear() {
+        head = null;
+    }
 
 }

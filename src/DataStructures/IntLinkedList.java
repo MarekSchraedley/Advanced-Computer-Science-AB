@@ -163,4 +163,34 @@ public class IntLinkedList implements Iterable<Integer> {
         head = null;
     }
 
+    public boolean contains(int n) {
+        var current = head;
+        while (current.next != null) {
+            if (current.data == n) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    public IntLinkedList getReverse() {
+        var current = head;
+        IntLinkedList myList = new IntLinkedList();
+        while (current.next != null) {
+            myList.addFront(current.data);
+            current = current.next;
+        }
+        return myList;
+    }
+
+    public double avg() {
+        var current = head;
+        int average = 0;
+        while (current.next != null) {
+            average += current.data;
+            current = current.next;
+        }
+        return  average/getCount();
+    }
 }

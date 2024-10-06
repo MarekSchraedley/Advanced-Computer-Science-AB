@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import Algorithims.SearchAlgorithims;
 import Algorithims.SortingAlgorithms;
-@SuppressWarnings("unchecked")
+@SuppressWarnings({"unchecked", "rawtypes", "unused"})
 public class DynamicArray<T extends Comparable<T>> implements Iterable<T> {
     private T[] array;
     private int size;
@@ -45,8 +45,10 @@ public class DynamicArray<T extends Comparable<T>> implements Iterable<T> {
     public boolean isEmpty() {return size == 0; }
     public int indexOf(T element) { return SearchAlgorithims.linearSearch(array, element); }
     public boolean contains(T element) {return indexOf(element) != -1;}
-    public void sort() { SortingAlgorithms.insertionSort(array, size); }
+    public void sort() { SortingAlgorithms.insertionSort(array); }
     public String toString() {return Arrays.toString(Arrays.copyOf(array, size)); }
+    public Comparable[] toArray() { return Arrays.copyOf(array, size); }
+
 
     public Iterator<T> iterator() {
         return new Iterator<T>() {

@@ -1,10 +1,10 @@
 package Q1;
-
+@SuppressWarnings("unchecked")
 public class Pelican504 {
-    public static void main(String args[])
+    public static void main(String[] args)
     {
-        int i[] = {-7, 15, 21, 22, 43, 49, 51, 67, 78, 81, 84, 89, 95, 97};
-        Integer iw[] = new Integer[14];
+        int[] i = {-7, 15, 21, 22, 43, 49, 51, 67, 78, 81, 84, 89, 95, 97};
+        Integer[] iw = new Integer[14];
         for(int k = 0; k < 14; k++)
         {
             iw[k] = i[k]; //pre Java 5.0 iw[k] = new Integer(i[k]);
@@ -16,8 +16,19 @@ public class Pelican504 {
         System.out.println(binarySearch(iw, 72)); //-1
         System.out.println(binarySearch(iw, 102)); //-1
     }
-    private static int binarySearch(Object a[], Object srchVal)
+    private static int binarySearch(Comparable[] a, Object srchVal)
     {
-        return 0;
+         int min  = 0;
+
+        int max = a.length;
+        while (min < max) {
+            if (a[(max-min)/2].compareTo(srchVal) < 0) {
+                min = (max-min)/2;
+            } else if (a[(max-min)/2].compareTo(srchVal) < 0) {
+
+            }
+
+        }
+
     }
 }

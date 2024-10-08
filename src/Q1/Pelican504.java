@@ -1,4 +1,7 @@
 package Q1;
+
+import Algorithims.SearchAlgorithims;
+
 @SuppressWarnings("unchecked")
 public class Pelican504 {
     public static void main(String[] args)
@@ -9,26 +12,11 @@ public class Pelican504 {
         {
             iw[k] = i[k]; //pre Java 5.0 iw[k] = new Integer(i[k]);
         }
-        System.out.println(binarySearch(iw, 22)); //3
-//pre Java 5.0, System.out.println(binarySearch(iw, new Integer(22)));
-        System.out.println(binarySearch(iw, 89)); //11
-        System.out.println(binarySearch(iw, -100)); //-1
-        System.out.println(binarySearch(iw, 72)); //-1
-        System.out.println(binarySearch(iw, 102)); //-1
+        System.out.println(SearchAlgorithims.binarySearch(iw, 22)); //3
+        System.out.println(SearchAlgorithims.binarySearch(iw, 89)); //11
+        System.out.println(SearchAlgorithims.binarySearch(iw, -100)); //-1
+        System.out.println(SearchAlgorithims.binarySearch(iw, 72)); //-1
+        System.out.println(SearchAlgorithims.binarySearch(iw, 102)); //-1
     }
-    private static int binarySearch(Comparable[] a, Object srchVal)
-    {
-         int min  = 0;
 
-        int max = a.length;
-        while (min < max) {
-            if (a[(max-min)/2].compareTo(srchVal) < 0) {
-                min = (max-min)/2;
-            } else if (a[(max-min)/2].compareTo(srchVal) < 0) {
-
-            }
-
-        }
-
-    }
 }

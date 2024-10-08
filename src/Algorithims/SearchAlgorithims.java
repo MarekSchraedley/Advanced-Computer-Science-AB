@@ -10,7 +10,21 @@ public class SearchAlgorithims {
     }
 
     public static <T extends Comparable<T>> int binarySearch(T[] arr, T target) {
-        //TODO
+        int min  = 0;
+        int max = arr.length-1;
+        int mid = 0;
+        while (min < max) {
+            System.out.println(arr);
+            mid = min + ((max - min)/2);
+            if (arr[mid].toString().compareTo(target.toString()) < 0) {
+                min = (mid)+1;
+            } else if (arr[mid].toString().compareTo(target.toString()) > 0) {
+                max = (mid)-1;
+            } else {
+                return mid;
+            }
+
+        }
         return -1;
     }
 

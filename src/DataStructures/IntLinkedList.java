@@ -193,4 +193,72 @@ public class IntLinkedList implements Iterable<Integer> {
         }
         return  average/getCount();
     }
+
+    public int min() {
+        var current = head;
+        int min = current.data;
+        while (current.next != null) {
+            if (current.data < min) {
+                min = current.data;
+            }
+            current = current.next;
+        }
+        return min;
+    }
+
+    public int max() {
+        var current = head;
+        int max = current.data;
+        while (current.next != null) {
+            if (current.data > max) {
+                max = current.data;
+            }
+            current = current.next;
+        }
+        return max;
+    }
+
+    public int indexOfMax() {
+        var current = head;
+        int max = max();
+        int count = 0;
+        while (current.next != null) {
+            if (current.data == max) {
+                return count;
+            }
+            current = current.next;
+            count++;
+        }
+        return -1;
+    }
+
+    public int lastIndexOfMax() {
+        var current = head;
+        int max = max();
+        int count = 0;
+        int index = -1;
+        while (current.next != null) {
+            if (current.data == max) {
+                index = count;
+            }
+            current = current.next;
+            count++;
+        }
+        return index;
+    }
+
+    public void sort() {
+        var current = head;
+        boolean notSwapped = false;
+        while (notSwapped) {
+            while (current.next.next != null) {
+                notSwapped = true;
+                if (current.data > current.next.data)
+                    current.next = current.
+                }
+            current = current.next;
+            }
+        }
+    }
+
 }

@@ -11,5 +11,15 @@ public class BigLinkedList {
         while (iter.hasNext())
             System.out.print(iter.next() + " ");
         System.out.println();
+
+        list.addFront(5);
+        list.print();
+        list.addLast(5);
+        System.out.println(list.getCount());
+        list.add(100, 5);
+        System.out.println(list.isEmpty());
+        list.print();
+        System.out.println(list.);
     }
+
 }

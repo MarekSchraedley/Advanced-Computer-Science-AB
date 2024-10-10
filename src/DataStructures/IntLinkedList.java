@@ -42,7 +42,7 @@ public class IntLinkedList implements Iterable<Integer> {
     public void print() {
         Node current = head;
         while (current != null) {
-            System.out.print(current.data);
+            System.out.print(current.data + " ");
             current = current.next;
         }
         System.out.println();
@@ -250,15 +250,57 @@ public class IntLinkedList implements Iterable<Integer> {
     public void sort() {
         var current = head;
         boolean notSwapped = false;
+        Node temp = null;
         while (notSwapped) {
-            while (current.next.next != null) {
-                notSwapped = true;
-                if (current.data > current.next.data)
-                    current.next = current.
+            notSwapped = true;
+            while (current.next != null) {
+                if (current.data > current.next.data){
+                    temp = current;
+                    current = current.next;
+                    current.next = temp;
+                    notSwapped = false;
                 }
             current = current.next;
             }
         }
     }
+
+    public int remove58() {
+        var current = head;
+        int count = 0;
+        while (current.next.next != null) {
+            if (current.next.data == 58) {
+                current.next = current.next.next;
+                count++;
+            } else {
+                current = current.next;
+            }
+        }
+        return count;
+    }
+
+    public int getEvenCount() {
+        var current = head;
+        int count = 0;
+        while (current.next != null) {
+            if (current.data % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    public void removeOdds() {
+        var current = head;
+        while (current.next.next != null) {
+            if (current.next.data % 2 == 1) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+    }
+
 
 }

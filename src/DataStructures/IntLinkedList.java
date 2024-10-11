@@ -251,13 +251,14 @@ public class IntLinkedList implements Iterable<Integer> {
         var current = head;
         boolean notSwapped = false;
         Node temp = null;
-        while (notSwapped) {
+        while (!notSwapped) {
             notSwapped = true;
-            while (current.next != null) {
+            while (current.next.next != null) {
                 if (current.data > current.next.data){
-                    temp = current;
-                    current = current.next;
-                    current.next = temp;
+                    temp = current.next;
+                    temp.next = current.next.next.next;
+                    current.next = current.next.next;
+                    current.next.next = temp;
                     notSwapped = false;
                 }
             current = current.next;

@@ -42,7 +42,7 @@ public class IntLinkedList implements Iterable<Integer> {
     public void print() {
         Node current = head;
         while (current != null) {
-            System.out.print(current.data);
+            System.out.print(current.data + " ");
             current = current.next;
         }
         System.out.println();
@@ -193,4 +193,115 @@ public class IntLinkedList implements Iterable<Integer> {
         }
         return  average/getCount();
     }
+
+    public int min() {
+        var current = head;
+        int min = current.data;
+        while (current.next != null) {
+            if (current.data < min) {
+                min = current.data;
+            }
+            current = current.next;
+        }
+        return min;
+    }
+
+    public int max() {
+        var current = head;
+        int max = current.data;
+        while (current.next != null) {
+            if (current.data > max) {
+                max = current.data;
+            }
+            current = current.next;
+        }
+        return max;
+    }
+
+    public int indexOfMax() {
+        var current = head;
+        int max = max();
+        int count = 0;
+        while (current.next != null) {
+            if (current.data == max) {
+                return count;
+            }
+            current = current.next;
+            count++;
+        }
+        return -1;
+    }
+
+    public int lastIndexOfMax() {
+        var current = head;
+        int max = max();
+        int count = 0;
+        int index = -1;
+        while (current.next != null) {
+            if (current.data == max) {
+                index = count;
+            }
+            current = current.next;
+            count++;
+        }
+        return index;
+    }
+
+    public void sort() {
+        var current = head;
+        boolean notSwapped = false;
+        Node temp = null;
+        while (!notSwapped) {
+            notSwapped = true;
+            while (current.next.next != null) {
+                if (current.data > current.next.data){
+                    temp = current.next;
+                    temp.next = current.next.next.next;
+                    current.next = current.next.next;
+                    current.next.next = temp;
+                    notSwapped = false;
+                }
+            current = current.next;
+            }
+        }
+    }
+
+    public int remove58() {
+        var current = head;
+        int count = 0;
+        while (current.next.next != null) {
+            if (current.next.data == 58) {
+                current.next = current.next.next;
+                count++;
+            } else {
+                current = current.next;
+            }
+        }
+        return count;
+    }
+
+    public int getEvenCount() {
+        var current = head;
+        int count = 0;
+        while (current.next != null) {
+            if (current.data % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    public void removeOdds() {
+        var current = head;
+        while (current.next.next != null) {
+            if (current.next.data % 2 == 1) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+    }
+
+
 }

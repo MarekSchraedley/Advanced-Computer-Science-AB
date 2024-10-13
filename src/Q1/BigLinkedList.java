@@ -11,5 +11,38 @@ public class BigLinkedList {
         while (iter.hasNext())
             System.out.print(iter.next() + " ");
         System.out.println();
+
+        list.addFront(5);
+        list.print();
+        list.addLast(5);
+        System.out.println(list.getCount());
+        list.add(100, 5);
+        System.out.println(list.isEmpty());
+        list.print();
+        System.out.println(list.getFront());
+        System.out.println(list.getLast());
+        System.out.println(list.getByIndex(100));
+        list.removeFirst();
+        list.removeLast();
+        System.out.println(list.countLess10());
+        list.removeIndex(100);
+        System.out.println(list.contains(100));
+        var newlist = list.getReverse();
+        newlist.print();
+        var iter2 = newlist.iterator();
+        System.out.println(list.avg());
+        System.out.println(list.min());
+        System.out.println(list.max());
+        System.out.println(list.indexOfMax());
+        System.out.println(list.lastIndexOfMax());
+        list.sort();
+        list.print();
+        System.out.println(list.remove58());
+        System.out.println(list.getEvenCount());
+        list.removeOdds();
+        list.print();
+        list.clear();
+
     }
+
 }

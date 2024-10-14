@@ -249,17 +249,17 @@ public class IntLinkedList implements Iterable<Integer> {
 
     public void sort() {
         var current = head;
-        boolean notSwapped = false;
+        boolean Swapped = false;
         Node temp = null;
-        while (!notSwapped) {
-            notSwapped = true;
+        while (!Swapped) {
+            Swapped = true;
             while (current.next.next != null) {
                 if (current.data > current.next.data){
                     temp = current.next;
                     temp.next = current.next.next.next;
                     current.next = current.next.next;
                     current.next.next = temp;
-                    notSwapped = false;
+                    Swapped = false;
                 }
             current = current.next;
             }

@@ -154,9 +154,16 @@ public class IntLinkedList implements Iterable<Integer> {
             count++;
             current = current.next;
         }
-        if (current.next != null) {
+        if (current.next != null && current.next.next != null) {
             current.next = current.next.next;
         }
+        else if (count == 0) {
+            head = head.next;
+        } else if (current.next.next == null) {
+            current.next = null;
+        }
+
+
     }
 
     public void clear() {
@@ -249,21 +256,64 @@ public class IntLinkedList implements Iterable<Integer> {
 
     public void sort() {
         var current = head;
-        boolean Swapped = false;
-        Node temp = null;
-        while (!Swapped) {
-            Swapped = true;
-            while (current.next.next != null) {
-                if (current.data > current.next.data){
-                    temp = current.next;
-                    temp.next = current.next.next.next;
-                    current.next = current.next.next;
-                    current.next.next = temp;
-                    Swapped = false;
-                }
-            current = current.next;
+        int count = 0;
+        int min = current.data;
+        while (current.next != null) {
+            if (current.data < min) {
+                min = current.data;
             }
+            current = current.next;
+            count++;
         }
+        System.out.println("My min is " + min);
+        int oldmin = 0;
+        var newHead = new Node(min);
+        var newCurrent = newHead;
+        for (int lcv = 0; lcv < 100; lcv++) {
+            current = head;
+            count = 0;
+            oldmin = min;
+            min = current.data;
+            while (current.next != null) {
+                if (current.data <= min) {
+                    min = current.data;
+                }
+                current = current.next;
+                count++;
+            }
+            newCurrent.next = new Node(min);
+            newCurrent = newCurrent.next;
+            //!
+            Node sortTarget = newCurrent;
+            if (current.next != null && current.next.next != null) {//Change the currents to sortTarget, This is your remove algorithm.
+                current.next = current.next.next;
+            }
+            else if (count == 0) {
+                head = head.next;
+            } else if (current.next.next == null) {
+                current.next = null;
+            }
+            //!
+
+        }
+        head = newHead;
+
+//        var current = head;
+//        boolean Swapped = false;
+//        Node temp = null;
+//        while (!Swapped) {
+//            Swapped = true;
+//            while (current.next.next != null) {
+//                if (current.data > current.next.data){
+//                    temp = current.next;
+//                    temp.next = temp.next.next;
+//                    current.next = current.next.next;
+//                    current.next.next = temp;
+//                    Swapped = false;
+//                }
+//            current = current.next;
+//            }
+//        }
     }
 
     public int remove58() {

@@ -154,9 +154,16 @@ public class IntLinkedList implements Iterable<Integer> {
             count++;
             current = current.next;
         }
-        if (current.next != null) {
+        if (current.next != null && current.next.next != null) {
             current.next = current.next.next;
         }
+        else if (count == 0) {
+            head = head.next;
+        } else if (current.next.next == null) {
+            current.next = null;
+        }
+
+
     }
 
     public void clear() {
@@ -248,22 +255,7 @@ public class IntLinkedList implements Iterable<Integer> {
     }
 
     public void sort() {
-        var current = head;
-        boolean notSwapped = false;
-        Node temp = null;
-        while (!notSwapped) {
-            notSwapped = true;
-            while (current.next.next != null) {
-                if (current.data > current.next.data){
-                    temp = current.next;
-                    temp.next = current.next.next.next;
-                    current.next = current.next.next;
-                    current.next.next = temp;
-                    notSwapped = false;
-                }
-            current = current.next;
-            }
-        }
+
     }
 
     public int remove58() {

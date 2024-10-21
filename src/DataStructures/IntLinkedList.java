@@ -150,7 +150,7 @@ public class IntLinkedList implements Iterable<Integer> {
     public void removeIndex(int pos) {
         Node current = head;
         int count = 0;
-        while (count < pos-1 && current != null) {
+        while (count < pos-1 && current.next != null) {
             count++;
             current = current.next;
         }
@@ -158,9 +158,9 @@ public class IntLinkedList implements Iterable<Integer> {
             current.next = current.next.next;
         }
         else if (count == 0) {
-            head = head.next;
-        } else if (current.next.next == null) {
-            current.next = null;
+            removeFirst();
+        } else if (count == getCount()-1) {
+            removeLast();
         }
 
 
@@ -213,6 +213,20 @@ public class IntLinkedList implements Iterable<Integer> {
         return min;
     }
 
+    public int indexOfMin() {
+        var current = head;
+        int min = min();
+        int count = 0;
+        while (current != null) {
+            if (current.data == min) {
+                return count;
+            }
+            current = current.next;
+            count++;
+        }
+        return -1;
+    }
+
     public int max() {
         var current = head;
         int max = current.data;
@@ -229,7 +243,7 @@ public class IntLinkedList implements Iterable<Integer> {
         var current = head;
         int max = max();
         int count = 0;
-        while (current.next != null) {
+        while (current != null) {
             if (current.data == max) {
                 return count;
             }
@@ -255,21 +269,36 @@ public class IntLinkedList implements Iterable<Integer> {
     }
 
     public void sort() {
-
+        IntLinkedList list = new IntLinkedList();
+        int min = min();
+        list.head = new Node(min);
+        int minIndex = indexOfMin();
+        removeIndex(minIndex);
+        while (getCount() != 1) {
+            min = min();
+            list.addLast(min);
+            minIndex = indexOfMin();
+            if (minIndex == 0) removeFirst();
+            else if (minIndex == getCount()-1) removeLast();
+            else removeIndex(minIndex);
+        }
+        head = list.head;
     }
 
     public int remove58() {
         var current = head;
+        int count58 = 0;
         int count = 0;
-        while (current.next.next != null) {
+        while (current.next != null) {
             if (current.next.data == 58) {
-                current.next = current.next.next;
-                count++;
+                removeIndex(count+1);
+                count58++;
             } else {
                 current = current.next;
+                count++;
             }
         }
-        return count;
+        return count58;
     }
 
     public int getEvenCount() {
@@ -279,6 +308,7 @@ public class IntLinkedList implements Iterable<Integer> {
             if (current.data % 2 == 0) {
                 count++;
             }
+            current = current.next;
         }
         return count;
     }

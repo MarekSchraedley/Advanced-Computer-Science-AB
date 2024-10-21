@@ -44,6 +44,17 @@ public class SortingAlgorithms {
         }
     }
 
+    public static <T extends Comparable<T>> void shellSort(T[] arr) {
+        int gap = arr.length/2;
+        while (gap != 0) {
+            for (int j = 0; j < arr.length-gap; j++) {
+                if(arr[j].compareTo(arr[j+gap]) > 0)
+                    swap(arr, j, j+gap);
+            }
+            gap--;
+        }
+    }
+
 
 
 }

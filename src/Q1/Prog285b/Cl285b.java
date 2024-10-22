@@ -6,7 +6,9 @@ public class Cl285b implements Comparable<Cl285b> {
     private double sales;
     private double comm;
 
-    private void calc() { /*TODO*/}
+    private void calc() {
+
+    }
 
     public Cl285b(int id, int code, double sales) {
         this.id = id;

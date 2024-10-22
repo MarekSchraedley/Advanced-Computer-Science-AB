@@ -1,13 +1,17 @@
 package Q1.Prog285b;
+
+import DataStructures.Queue;
+import DataStructures.Stack;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import DataStructures.Stack;
-public class Prog285bStack {
+
+public class Prog285bQ {
     public static void main(String[] args) {
         try {
             var file = new Scanner(new File("Langdat/prog285b.dat"));
-            var stack = new Stack<Cl285b>();
+            var queue = new Queue<Cl285b>();
 
             System.out.println("Id\tCode\tSales\tCommission");
             while (file.hasNext()) {
@@ -16,12 +20,12 @@ public class Prog285bStack {
                 double s = file.nextDouble();
 
                 var fred = new Cl285b(id, c, s);
-                stack.push(fred);
+                queue.enqueue(fred);
             }
             file.close();
 
-            while (!stack.isEmpty()) {
-                var fred = stack.pop();
+            while (!queue.isEmpty()) {
+                var fred = queue.dequeue();
                 System.out.println(fred);
             }
         } catch (IOException e) {

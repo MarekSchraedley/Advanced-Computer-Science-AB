@@ -62,6 +62,22 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     public void remove(int index) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         //Todo: the rest
+        var current = head;
+        if (index == 0) {
+            head = head.next;
+        } else if (index == size-1) {
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            current.prev.next = null;
+        } else {
+            for (int lcv = 1; lcv < size-1; lcv++) {
+                current = current.next;
+                if (lcv == index) {
+                    current.prev
+                }
+            }
+        }
     }
 
     public T get(int index) {

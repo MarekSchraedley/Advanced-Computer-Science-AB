@@ -57,6 +57,13 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     public void addSorted(T element) {
         //TODO
+        int lcv = 0;
+        var current = head;
+        while (lcv < size-1 && current.data.compareTo(element) < 0) {
+            lcv++;
+            current = current.next;
+        }
+
     }
 
     public void remove(int index) {
@@ -71,12 +78,10 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             }
             current.prev.next = null;
         } else {
-            for (int lcv = 1; lcv < size-1; lcv++) {
+            for (int lcv = 0; lcv < index; lcv++) {
                 current = current.next;
-                if (lcv == index) {
-                    current.prev
-                }
             }
+            current.prev.next = current.next;
         }
     }
 
@@ -90,6 +95,11 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     public void set(int index, T element) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         //Todo the rest
+        var current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        current.data = element;
     }
 
     public void print() {

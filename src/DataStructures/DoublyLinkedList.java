@@ -57,13 +57,29 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     public void addSorted(T element) {
         //TODO
-        int lcv = 0;
+        var newNode = new Node(element);
         var current = head;
-        while (lcv < size-1 && current.data.compareTo(element) < 0) {
-            lcv++;
+        while (current != null && current.data.compareTo(element) < 0) {
             current = current.next;
         }
-
+        if (current != null) {
+            if (current.prev == null) {
+                current.prev = newNode;
+                newNode.next = current;
+            }
+            else if (current.next == null) {
+                current.next = newNode;
+                newNode.prev = current;
+            }
+            else {
+                newNode.next = current;
+                newNode.prev = current.prev;
+                current.prev.next = newNode;
+                current.prev = newNode;
+            }
+        } else {
+            head = newNode;
+        }
     }
 
     public void remove(int index) {
@@ -82,6 +98,24 @@ public class DoublyLinkedList<T extends Comparable<T>> {
                 current = current.next;
             }
             current.prev.next = current.next;
+        }
+    }
+
+    public void remove(T element) {
+        var current = head;
+        while (current != null && current.data != element) {
+            current = current.next;
+        }
+        if (current != null) {
+            if (current.prev == null) {
+                current.next.prev = null;
+            }
+            else if (current.next == null) {
+                current.prev.next = null;
+            }
+            else {
+                current.prev.next = current.next;
+            }
         }
     }
 

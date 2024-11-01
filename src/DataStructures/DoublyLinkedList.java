@@ -59,26 +59,30 @@ public class DoublyLinkedList<T extends Comparable<T>> {
         //TODO
         var newNode = new Node(element);
         var current = head;
-        while (current != null && current.data.compareTo(element) < 0) {
-            current = current.next;
-        }
-        if (current != null) {
-            if (current.prev == null) {
-                current.prev = newNode;
-                newNode.next = current;
+        if (head == null) {
+            head = newNode;
+        } else {
+
+            while (current.next != null && current.data.compareTo(element) < 0) {
+                current = current.next;
             }
-            else if (current.next == null) {
+            if (current != null) {
+                if (current.prev == null) {
+                    current.prev = newNode;
+                    newNode.next = current;
+                    head = newNode;
+                } else {
+                    newNode.next = current;
+                    newNode.prev = current.prev;
+                    current.prev.next = newNode;
+                    current.prev = newNode;
+                }
+            } else {
                 current.next = newNode;
                 newNode.prev = current;
+                tail = newNode;
+
             }
-            else {
-                newNode.next = current;
-                newNode.prev = current.prev;
-                current.prev.next = newNode;
-                current.prev = newNode;
-            }
-        } else {
-            head = newNode;
         }
     }
 

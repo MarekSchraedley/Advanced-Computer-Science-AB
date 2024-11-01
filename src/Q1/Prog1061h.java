@@ -15,13 +15,15 @@ public class Prog1061h {
 
             while (file.hasNext()) {
                 choice = file.next();
-                if (choice.equals("A")) {
-                    myList.addSorted(file.next());
-                } else if (choice.equals("D")) {
-                    myList.remove(file.next());
-                } else if (choice.equals("P")) {
+                System.out.println(":::" + choice);
+                if (choice.substring(0, 1).equals("A")) {
+                    myList.addSorted(choice.substring(1));
+                } else if (choice.substring(0, 1).equals("D")) {
+                    myList.remove(choice.substring(1));
+                } else if (choice.substring(0, 1).equals("P")) {
                     myList.print();
                 }
+                myList.print();
             }
             file.close();
         } catch (IOException e) {

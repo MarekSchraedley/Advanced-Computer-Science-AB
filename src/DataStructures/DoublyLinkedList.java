@@ -57,11 +57,70 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     public void addSorted(T element) {
         //TODO
+        var newNode = new Node(element);
+        var current = head;
+        if (head == null) {
+            head = newNode;
+        } else {
+
+            while (current.next != null && current.data.compareTo(element) < 0) {
+                current = current.next;
+            }
+            if (current != null) {
+                if (current.prev == null) {
+                    current.prev = newNode;
+                    newNode.next = current;
+                    head = newNode;
+                } else {
+                    newNode.next = current;
+                    newNode.prev = current.prev;
+                    current.prev.next = newNode;
+                    current.prev = newNode;
+                }
+            } else {
+                current.next = newNode;
+                newNode.prev = current;
+                tail = newNode;
+
+            }
+        }
     }
 
     public void remove(int index) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         //Todo: the rest
+        var current = head;
+        if (index == 0) {
+            head = head.next;
+        } else if (index == size-1) {
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            current.prev.next = null;
+        } else {
+            for (int lcv = 0; lcv < index; lcv++) {
+                current = current.next;
+            }
+            current.prev.next = current.next;
+        }
+    }
+
+    public void remove(T element) {
+        var current = head;
+        while (current != null && current.data != element) {
+            current = current.next;
+        }
+        if (current != null) {
+            if (current.prev == null) {
+                current.next.prev = null;
+            }
+            else if (current.next == null) {
+                current.prev.next = null;
+            }
+            else {
+                current.prev.next = current.next;
+            }
+        }
     }
 
     public T get(int index) {
@@ -74,6 +133,11 @@ public class DoublyLinkedList<T extends Comparable<T>> {
     public void set(int index, T element) {
         if (index < 0 || index >= size) throw new IndexOutOfBoundsException();
         //Todo the rest
+        var current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        current.data = element;
     }
 
     public void print() {

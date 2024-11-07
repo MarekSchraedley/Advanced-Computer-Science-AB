@@ -15,7 +15,7 @@ public class Prog1061h {
 
             while (file.hasNext()) {
                 choice = file.next();
-                System.out.println(":::" + choice);
+                //System.out.println(":::" + choice);
                 if (choice.substring(0, 1).equals("A")) {
                     myList.addSorted(choice.substring(1));
                 } else if (choice.substring(0, 1).equals("D")) {
@@ -23,7 +23,6 @@ public class Prog1061h {
                 } else if (choice.substring(0, 1).equals("P")) {
                     myList.print();
                 }
-                myList.print();
             }
             file.close();
         } catch (IOException e) {

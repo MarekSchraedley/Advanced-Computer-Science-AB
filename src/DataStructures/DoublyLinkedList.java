@@ -66,7 +66,7 @@ public class DoublyLinkedList<T extends Comparable<T>> {
             while (current.next != null && current.data.compareTo(element) < 0) {
                 current = current.next;
             }
-            if (current != null) {
+            if (current.next != null) {
                 if (current.prev == null) {
                     current.prev = newNode;
                     newNode.next = current;
@@ -107,18 +107,22 @@ public class DoublyLinkedList<T extends Comparable<T>> {
 
     public void remove(T element) {
         var current = head;
-        while (current != null && current.data != element) {
+        while (current != null && !(current.data.equals(element))) {
             current = current.next;
         }
         if (current != null) {
             if (current.prev == null) {
+                head = current.next;
                 current.next.prev = null;
             }
             else if (current.next == null) {
+                tail = current.prev;
                 current.prev.next = null;
+
             }
             else {
                 current.prev.next = current.next;
+                current.next.prev = current.prev;
             }
         }
     }

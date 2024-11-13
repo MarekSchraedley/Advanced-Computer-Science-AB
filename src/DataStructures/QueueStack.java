@@ -1,7 +1,7 @@
 package DataStructures;
 
 public class QueueStack<T extends Comparable<T>> {
-    protected Queue queue;
+    protected Queue <T>queue;
     public QueueStack() {
         queue = new Queue<T>();
     }
@@ -20,7 +20,14 @@ public class QueueStack<T extends Comparable<T>> {
             element = queue.peek();
             queue.dequeue();
         }
+        return element;
+    }
 
+    public T peek() {
+        return queue.peek();
+    }
 
+    public int size() {
+        return queue.size();
     }
 }

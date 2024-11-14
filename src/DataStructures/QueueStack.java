@@ -24,7 +24,9 @@ public class QueueStack<T extends Comparable<T>> {
     }
 
     public T peek() {
-        return queue.peek();
+        T element = pop();
+        push(element);
+        return element;
     }
 
     public int size() {

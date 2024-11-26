@@ -21,7 +21,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         root = null;
     }
 
-    private void insert(T element) {
+    public void insert(T element) {
         root = insert(root, element);
     }
 

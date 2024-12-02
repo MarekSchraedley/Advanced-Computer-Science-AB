@@ -3,7 +3,7 @@ package DataStructures;
 import java.util.Iterator;
 
 public class CircularLinkedList<T extends Comparable<T>> implements Iterable<T> {
-    private class Node implements Comparable<Node> {
+    protected class Node implements Comparable<Node> {
         T data;
         Node next;
 
@@ -15,8 +15,8 @@ public class CircularLinkedList<T extends Comparable<T>> implements Iterable<T> 
         public int compareTo(Node o) {return data.compareTo(o.data);}
     }
 
-    private Node head;
-    private int size;
+    protected Node head;
+    protected int size;
 
     public CircularLinkedList() {
         head = null;

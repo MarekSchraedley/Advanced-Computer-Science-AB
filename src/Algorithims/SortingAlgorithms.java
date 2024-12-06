@@ -61,7 +61,11 @@ public class SortingAlgorithms {
     }
 
     public static <T extends Comparable<T>> void mergeSort(T[] arr, int l, int r) {
-
+        if (r-l < 1) {
+            mergeSort(arr, l, l + ((r-l)/2));
+        } else {
+            merge(arr, );
+        }
     }
 
     public static <T extends Comparable<T>> void merge(T[] arr, int l, int m, int r) {

@@ -1,4 +1,5 @@
 package Algorithims;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -61,15 +62,53 @@ public class SortingAlgorithms {
     }
 
     public static <T extends Comparable<T>> void mergeSort(T[] arr, int l, int r) {
-        if (r-l < 1) {
-            mergeSort(arr, l, l + ((r-l)/2));
-        } else {
-            //merge(arr, );
+        if (r-l > 0) {
+            mergeSort(arr, l, ((r + l) / 2));
+            mergeSort(arr, ((r + l) / 2)+1, r);
+            merge(arr, l, ((r + l) / 2), r);
         }
     }
 
     public static <T extends Comparable<T>> void merge(T[] arr, int l, int m, int r) {
-
+        int lInc = 0;
+        int rInc = 0;
+        var constArr = new ArrayList<T>();
+        for (int lcv = 0; lcv < arr.length; lcv++) {
+            constArr.add(arr[lcv]);
+        }
+        boolean left = false;
+        boolean right = false;
+        System.out.println(r);
+        for (int i = 0; i < r; i++) {
+            left = false;
+            right = false;
+            if (l + lInc >= m) {
+                left = true;
+            }
+            if (m + rInc >= r) {
+                right = true;
+            }
+            if (!left && !right) {
+                System.out.println("otherstatement");
+                if ((constArr.get(l+lInc).compareTo(constArr.get(m+rInc)) <= 0)) {
+                    arr[i] = constArr.get(l+lInc);
+                    lInc++;
+                } else {
+                    arr[i] = constArr.get(m + rInc);
+                    rInc++;
+                }
+            } else {
+                System.out.println("extrastatement");
+              if (left && !right) {
+                  arr[i] = constArr.get(m + rInc);
+                  rInc++;
+              }
+              else if (!left && right) {
+                  arr[i] = constArr.get(l+lInc);
+                  lInc++;
+              }
+            }
+        }
     }
 
 

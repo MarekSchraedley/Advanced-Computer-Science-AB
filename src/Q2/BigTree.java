@@ -37,5 +37,6 @@ public class BigTree {
         System.out.println(tree.width());
         tree.invert();
         tree.printInOrder();
+
     }
 }

@@ -87,11 +87,35 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.println();
     }
 
+    public void printPreOrder() {
+        preorder(root);
+        System.out.println();
+    }
+
+    public void printPostOrder() {
+        postorder(root);
+        System.out.println();
+    }
+
     private void inorder(Node node) {
         if (node == null) return;
         inorder(node.left);
         System.out.print(node.data + " ");
         inorder(node.right);
+    }
+
+    private void preorder(Node node) {
+        if (node == null) return;
+        System.out.print(node.data + " ");
+        inorder(node.left);
+        inorder(node.right);
+    }
+
+    private void postorder(Node node) {
+        if (node == null) return;
+        inorder(node.left);
+        inorder(node.right);
+        System.out.print(node.data + " ");
     }
 
     public void invert() {root = invert(root);}
@@ -110,6 +134,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if (node == null) return 0;
         return 1 + Math.max(height(node.left), height(node.right));
     }
+
 
     private int width(Node node) {
         if (node == null) return 0;

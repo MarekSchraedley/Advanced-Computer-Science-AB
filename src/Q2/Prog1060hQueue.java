@@ -10,8 +10,13 @@ import java.util.Scanner;
 public class Prog1060hQueue {
     public static void main(String[] args) {
         try {
-            Queue<Double>[] list = new Queue[5];
-            var file = new Scanner(new File("Langdat/REPLACE.dat"));
+            var file = new Scanner(new File("Langdat/invntory.dat"));
+
+            Queue<Double>[] codes = new Queue[5];
+
+            file = new Scanner(new File("Langdat/REPLACE.dat"));
+
+
 
             while (file.hasNext()) {
 

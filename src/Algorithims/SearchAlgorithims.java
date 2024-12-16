@@ -1,5 +1,7 @@
 package Algorithims;
 
+import DataStructures.Queue;
+
 @SuppressWarnings("unused")
 public class SearchAlgorithims {
     public static <T extends Comparable<T>> int linearSearch(T[] arr, T target) {
@@ -41,7 +43,6 @@ public class SearchAlgorithims {
         else
             return binarySearchRecursive(arr, target, low, mid-1);
     }
-
 
 
 }

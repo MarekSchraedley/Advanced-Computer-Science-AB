@@ -72,7 +72,7 @@ public class MSOE2024_7 {
             for (int lcv = 0; lcv < giftList.size(); lcv++) { //Head gift
                 Boolean endReached = false;
                 while (endReached = false) {
-                    for (int lcv2 = 0; lcv2 < ; lcv2++) {
+                    for (int lcv2 = 0; lcv2 < 0; lcv2++) {
 
                     }
                 }

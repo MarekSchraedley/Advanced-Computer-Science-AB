@@ -41,6 +41,11 @@ public class MSOE2024_7 {
         }
     }
 
+    // recursion call self as many times as there are possibilities, compare all possiblities and return largest, for very last possibility find largest starting box
+    public static ArrayList<gift>  largestRecursive(ArrayList<gift> largest) {
+        return new ArrayList<gift>();
+    }
+
     public static void main(String[] args) {
         try {
             var file = new Scanner(new File("Langdat/REPLACE.dat"));
@@ -67,9 +72,9 @@ public class MSOE2024_7 {
             for (int lcv = 0; lcv < giftList.size(); lcv++) { //Head gift
                 Boolean endReached = false;
                 while (endReached = false) {
-                    //for (int lcv2 = 0; lcv2 < ; lcv2++) {
+                    for (int lcv2 = 0; lcv2 < ; lcv2++) {
 
-                    //}
+                    }
                 }
 
             }

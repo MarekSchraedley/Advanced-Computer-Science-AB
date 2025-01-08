@@ -26,6 +26,8 @@ public class MSOE2024_7 {
         public Double getMyArea() {return myArea;}
     }
 
+
+
     public static void sortBySize(ArrayList<gift> list) {
         Boolean changed = true;
         while (changed == true) {
@@ -41,9 +43,25 @@ public class MSOE2024_7 {
         }
     }
 
+    public static ArrayList<gift> largestRecursive(ArrayList<gift> list) {
+        int[] sums = new int[list.size()];
+        for (int lcv = 0; lcv < list.size(); lcv++) {
+            ArrayList<gift> startTemp = new ArrayList<>();
+            startTemp.add(list.get(lcv));
+            sums[lcv] = myLargestRecursive(startTemp, list);
+        }
+    }
+
+
     // recursion call self as many times as there are possibilities, compare all possiblities and return largest, for very last possibility find largest starting box
-    public static ArrayList<gift>  largestRecursive(ArrayList<gift> largest) {
-        return new ArrayList<gift>();
+    public static int  myLargestRecursive(ArrayList<gift> largest, ArrayList<gift> list) {
+
+        for (int lcv = 0; lcv < list.size(); lcv++) {
+
+
+
+        }
+
     }
 
     public static void main(String[] args) {

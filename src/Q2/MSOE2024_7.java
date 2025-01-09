@@ -44,24 +44,25 @@ public class MSOE2024_7 {
     }
 
     public static ArrayList<gift> largestRecursive(ArrayList<gift> list) {
-        int[] sums = new int[list.size()];
+        ArrayList<ArrayList<gift>> lists = new ArrayList<ArrayList<gift>>();
         for (int lcv = 0; lcv < list.size(); lcv++) {
             ArrayList<gift> startTemp = new ArrayList<>();
             startTemp.add(list.get(lcv));
-            sums[lcv] = myLargestRecursive(startTemp, list);
+            lists.add(lcv, myLargestRecursive(startTemp, list));
         }
     }
 
 
     // recursion call self as many times as there are possibilities, compare all possiblities and return largest, for very last possibility find largest starting box
-    public static int  myLargestRecursive(ArrayList<gift> largest, ArrayList<gift> list) {
-
+    public static ArrayList<gift>  myLargestRecursive(ArrayList<gift> collection, ArrayList<gift> list) {
+        ArrayList<ArrayList<gift>> lists = new ArrayList<ArrayList<gift>>();
         for (int lcv = 0; lcv < list.size(); lcv++) {
+            for (int i = 0; i < list.size(); i++) {
+                gift lastBox = collection.get(list.size()-1);
+                gift thisBox = list.get(i);
 
-
-
+            }
         }
-
     }
 
     public static void main(String[] args) {

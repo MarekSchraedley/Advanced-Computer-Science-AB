@@ -29,11 +29,11 @@ public class MSOE2024_7 {
 
 
     public static void sortBySize(ArrayList<gift> list) {
-        Boolean changed = true;
+        boolean changed = true;
         while (changed == true) {
             changed = false;
             for (int i = 0; i < list.size()-1; i++) {
-                if (list.get(i).getMyArea() > list.get(i+1).getMyArea()) {
+                if (list.get(i).getMyArea() < list.get(i+1).getMyArea()) {
                     gift temp = list.get(i);
                     list.set(i, list.get(i+1));
                     list.set(i+1, temp);
@@ -43,63 +43,80 @@ public class MSOE2024_7 {
         }
     }
 
-    public static ArrayList<gift> largestRecursive(ArrayList<gift> list) {
-        ArrayList<ArrayList<gift>> lists = new ArrayList<ArrayList<gift>>();
-        for (int lcv = 0; lcv < list.size(); lcv++) {
-            ArrayList<gift> startTemp = new ArrayList<>();
-            startTemp.add(list.get(lcv));
-            lists.add(lcv, myLargestRecursive(startTemp, list));
-        }
-    }
-
-
-    // recursion call self as many times as there are possibilities, compare all possiblities and return largest, for very last possibility find largest starting box
-    public static ArrayList<gift>  myLargestRecursive(ArrayList<gift> collection, ArrayList<gift> list) {
-        ArrayList<ArrayList<gift>> lists = new ArrayList<ArrayList<gift>>();
-        for (int lcv = 0; lcv < list.size(); lcv++) {
-            for (int i = 0; i < list.size(); i++) {
-                gift lastBox = collection.get(list.size()-1);
-                gift thisBox = list.get(i);
-
-            }
-        }
-    }
-
     public static void main(String[] args) {
         try {
-            var file = new Scanner(new File("Langdat/REPLACE.dat"));
+            var file = new Scanner(new File("Langdat/MSOE2024_7.dat"));
             ArrayList<gift> giftList = new ArrayList<>();
             while (file.hasNext()) {
                 String tempName = file.next();
                 String temp = file.next();
                 int lcv = 0;
-                while (temp.substring(lcv, lcv+1) != "x") {
+                while (!temp.substring(lcv, lcv+1).equals("x")) {
                     lcv++;
                 }
-                int length = Integer.parseInt(temp.substring(0, lcv));
-                int lcv2 = lcv;
-                while (temp.substring(lcv2, lcv2+1) != "x") {
+                double length = Double.parseDouble(temp.substring(0, lcv));
+                int lcv2 = lcv+1;
+                while (!temp.substring(lcv2, lcv2+1).equals("x")) {
                     lcv2++;
                 }
-                int width = Integer.parseInt(temp.substring(lcv+1, lcv2));
-                int height = Integer.parseInt(temp.substring(lcv2+1));
+                double width = Double.parseDouble(temp.substring(lcv+1, lcv2));
+                double height = Double.parseDouble(temp.substring(lcv2+1));
                 giftList.add(new gift(tempName, length, width, height));
             }
             file.close();
+            for (gift mygift : giftList) {
+                if (mygift.getMyArea() == 0) {
+                    giftList.remove(mygift);
+                }
+            }
             sortBySize(giftList);
 
+            ArrayList<ArrayList<gift>> lists = new ArrayList<ArrayList<gift>>();
             for (int lcv = 0; lcv < giftList.size(); lcv++) { //Head gift
-                Boolean endReached = false;
-                while (endReached = false) {
-                    for (int lcv2 = 0; lcv2 < 0; lcv2++) {
+                ArrayList<gift> list = new ArrayList<>();
+                list.add(giftList.get(lcv));
+                for (int lcv2 = lcv+1; lcv2 < giftList.size(); lcv2++) {
+                    double ratio = list.get(list.size()-1).getMyArea() / giftList.get(lcv2).getMyArea();
+                    if (ratio > 1.55 && ratio < 1.65) {
+                        list.add(giftList.get(lcv2));
+                    }
+                }
+                lists.add(list);
+            }
 
+
+            int largestLength = 0;
+            for (int lcv = 0; lcv < lists.size(); lcv++) {
+                if (lists.get(lcv).size() > largestLength) {
+                    largestLength = lists.get(lcv).size();
+                }
+            }
+            if (largestLength == 1) {
+                System.out.println("No pairs");
+            } else {
+
+                Double largestArea = 0.0;
+                int largestIndex = 0;
+                for (int lcv = 0; lcv < lists.size(); lcv++) {
+                    if (lists.get(lcv).size() == largestLength && lists.get(lcv).get(0).getMyArea() > largestArea) {
+                        largestArea = lists.get(lcv).get(0).getMyArea();
+                        largestIndex = lcv;
                     }
                 }
 
-            }
+                for (int lcv = 0; lcv < lists.get(largestIndex).size(); lcv++) {
+                    gift printItem = lists.get(largestIndex).get(lcv);
+                    System.out.println(printItem.myName + " " + printItem.myLength + "x" + printItem.myWidth + "x" + printItem.myHeight + " " + printItem.myArea);
+                }
 
+            }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 }
+/*
+ball_2 20.0x20.0x20.0 8000.0
+soda 17.0x17.0x17.0 4913.0
+glove 14.42x14.42x14.42 2998.442888
+ */

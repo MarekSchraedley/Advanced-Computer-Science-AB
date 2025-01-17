@@ -8,7 +8,6 @@ public class Prog1999s {
     public static void main(String[] args) {
         try {
             var file = new Scanner(new File("Langdat/REPLACE.dat"));
-
             while (file.hasNext()) {
 
             }

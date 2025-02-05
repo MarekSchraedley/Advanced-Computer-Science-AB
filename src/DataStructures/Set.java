@@ -1,4 +1,4 @@
-package Q3;
+package DataStructures;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

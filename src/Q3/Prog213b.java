@@ -15,18 +15,25 @@ public class Prog213b {
             while (file.hasNext()) {
                 set.insert(file.nextInt());
             }
-
-            Double price = 0.0;
-            var quantity =0;
-            if (quantity  > 0 && quantity <= 99) {
-                price = 5.95;
-            } else if (quantity >= 100 && quantity <= 199) {
-                price = 5.75;
-            } else if (quantity >= 200 && quantity <= 299) {
-                price = 5.40;
-            } else if (quantity >= 300) {
-                price = 5.15;
+            var iter = set.iterator();
+            while (iter.hasNext()) {
+                Double price = 0.0;
+                var quantity = iter.next();
+                System.out.println("Quantity: " + quantity);
+                if (quantity  > 0 && quantity <= 99) {
+                    price = 5.95;
+                } else if (quantity >= 100 && quantity <= 199) {
+                    price = 5.75;
+                } else if (quantity >= 200 && quantity <= 299) {
+                    price = 5.40;
+                } else if (quantity >= 300) {
+                    price = 5.15;
+                }
+                System.out.println("Price Per: " + price);
+                System.out.println("Price: " + (price * quantity));
+                System.out.println();
             }
+
 
             file.close();
         } catch (IOException e) {

@@ -32,5 +32,4 @@ public class Prog285bSet {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
 }

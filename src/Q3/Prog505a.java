@@ -11,16 +11,21 @@ public class Prog505a {
         try {
             var file = new Scanner(new File("Langdat/prog505a.txt"));
             var set = new Set<Integer>();
+            var nameSet = new Set<String>();
             while (file.hasNext()) {
+                nameSet.insert(file.next() + " " + file.next());
                 set.insert(file.nextInt());
             }
             System.out.println("Reading Contest\nName\t\tBooks\tPoints");
-            var iter = set.iterator();
-            while (iter.hasNext()) {
+            var intIter = set.iterator();
+            var strIter = nameSet.iterator();
+            int winner = 0;
+            while (intIter.hasNext()) {
+                System.out.print(strIter.next());
                 int total = 0;
-                var quantity = iter.next();
-                System.out.println("Quantity: " + quantity);
-                for (int i = 0; i < quantity; i++) {
+                var quantity = intIter.next();
+                System.out.print("\t" + quantity);
+                for (int i = 1; i <= quantity; i++) {
                     if (i  > 0 && i <= 3) {
                         total += 10;
                     } else if (i >= 4 && i <= 6) {
@@ -29,8 +34,7 @@ public class Prog505a {
                         total += 20;
                     }
                 }
-                //System.out.println("Price Per: " + price);
-                //System.out.println("Price: " + (price * quantity));
+                System.out.println("\t" + total);
                 System.out.println();
             }
 

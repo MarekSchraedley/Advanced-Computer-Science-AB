@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Prog285bSet {
     public static void main(String[] args) {
         try {
-            var file = new Scanner(new File("Langdat/prog285b.dat"));
+            var file = new Scanner(new File("Langdat/prog285b.txt"));
             var set = new Set<Cl285b>();
 
             System.out.println("Id\tCode\tSales\tCommission");

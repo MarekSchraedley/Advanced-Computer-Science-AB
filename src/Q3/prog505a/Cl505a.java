@@ -9,6 +9,10 @@ public class Cl505a {
         points = myPoints;
         books = myBooks;
     }
+    public String getName() {return name;}
+    public Integer getPoints() {return points;}
+    public Integer getBooks() {return books;}
 
+    public int compareTo() {return 0;}
 
 }

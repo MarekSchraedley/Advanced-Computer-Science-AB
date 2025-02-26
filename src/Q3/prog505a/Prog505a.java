@@ -6,12 +6,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Prog505a {
+public class Prog505a implements Comparable<Cl505a>  {
+
     public static void main(String[] args) {
         try {
             var file = new Scanner(new File("Langdat/prog505a.dat"));
-            var set = new Set<Integer>();
-            var nameSet = new Set<String>();
+            var set = new Set<Cl505a>();
             while (file.hasNext()) {
                 nameSet.insert(file.next() + " " + file.next());
                 set.insert(file.nextInt());

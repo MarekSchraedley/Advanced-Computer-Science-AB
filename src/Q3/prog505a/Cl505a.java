@@ -1,18 +1,16 @@
 package Q3.prog505a;
 
-public class Cl505a {
+public class Cl505a implements Comparable<Cl505a> {
+    @Override
+    public int compareTo(Cl505a thing) {return this.name.compareTo(thing.name);}
     private String name;
-    private Integer points;
     private Integer books;
-    public Cl505a(String myName, int myPoints, int myBooks) {
+    public Cl505a(String myName, int myBooks) {
         name = myName;
-        points = myPoints;
         books = myBooks;
     }
     public String getName() {return name;}
-    public Integer getPoints() {return points;}
     public Integer getBooks() {return books;}
 
-    public int compareTo() {return 0;}
 
 }

@@ -44,7 +44,7 @@ public class Prog570aRegEx {
                 var ucMatcher = upperCasePattern.matcher(line);
                 while (ucMatcher.find()) {
                     char upperChar = ucMatcher.group().charAt(0);
-                    upperCaseSet[upperChar - 'a'] = true;
+                    upperCaseSet[upperChar - 'A'] = true;
 
                 }
 

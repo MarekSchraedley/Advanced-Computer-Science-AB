@@ -2,6 +2,7 @@ package Q3;
 import DataStructures.Set;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Pelican45_3 {
     public static void main(String[] args) {
@@ -15,7 +16,11 @@ public class Pelican45_3 {
         for (String item : list2) {
             s2.add(item);
         }
-
+        s1.retainAll(s2);
+        Iterator iter1 = s1.iterator();
+        while (iter1.hasNext()) {
+            System.out.println(iter1.next());
+        }
 
     }
 }

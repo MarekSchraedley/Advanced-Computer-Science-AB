@@ -34,9 +34,6 @@ public class Msoe2014_5 {
                 }
             }
         }
-        for (int i = 0; i < primeList.size(); i++) {
-            System.out.println(primeList.get(i));
-        }
         for (int i = 0; i < relevantPrime.size(); i++) {
             primeList.remove(relevantPrime.get(i));
         }
@@ -44,5 +41,6 @@ public class Msoe2014_5 {
         for (int i = 1; i < primeList.size(); i++) {
             total *= primeList.get(i);
         }
+        System.out.println(total);
     }
 }

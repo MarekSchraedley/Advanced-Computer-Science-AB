@@ -18,16 +18,20 @@ public class Msoe2007_7 {
         while (!isPalendrome) {
             count++;
             revPal = "";
-            for (int i = closestPal.length()-1; i >= 0; i++) {
+            for (int i = closestPal.length()-1; i >= 0; i--) {
                 revPal += closestPal.substring(i, i+1);
             }
             if (closestPal.equals(revPal)) {
-                isPalendrome = false;
+                isPalendrome = true;
+            } else {
+                String closestPalTemp = Integer.toString(Integer.parseInt(closestPal) + 1);
+                closestPal = "";
+                for (int i = 0; i < digits - closestPalTemp.length(); i++) {
+                    closestPal += "0";
+                }
+                closestPal += closestPalTemp;
             }
-            String closestPalTemp = closestPal;
-            closestPal = "";
-            for (int i = 0; i < digits-reading.length(); i++) {closestPal += "0";}
-            closestPal += closestPalTemp;
         }
+        System.out.println(Integer.parseInt(closestPal) - Integer.parseInt(reading));
     }
 }

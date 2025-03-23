@@ -86,10 +86,7 @@ public class CalculatorGui extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String digit = "-1";
         System.out.println(e.getSource());
-        if (e.getSource() == a1Button) {
-            digit = "1";
-            System.out.println("pressed");
-        }
+        if (e.getSource() == a1Button) {digit = "1";}
         if (e.getSource() == a2Button) {digit = "2";}
         if (e.getSource() == a3Button) {digit = "3";}
         if (e.getSource() == a4Button) {digit = "4";}
@@ -150,6 +147,5 @@ public class CalculatorGui extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        System.out.println("done");
     }
 }

@@ -8,7 +8,7 @@ public interface Graph<T extends Comparable<T>> {
     boolean hasVertex(T vertex);
     boolean hasEdge(T source, T destination);
     void display();
-    int getEdgeWidth(T source, T destination);
-    Dictionary<T, Integer> getVerticies();
+    int getEdgeWeight(T source, T destination);
+    Dictionary<T, Integer> getVertices();
     DynamicArray<T> getNeighbors(T vertex);
 }

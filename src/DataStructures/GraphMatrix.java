@@ -57,7 +57,7 @@ public class GraphMatrix<T extends Comparable<T>> implements Graph<T> {
         int sourceIndex = vertecies.get(source);
         int destinationIndex = vertecies.get(destination);
         matrix[sourceIndex][destinationIndex] = 0;
-        matrix[destinationIndex][sourceIndex] = 0
+        matrix[destinationIndex][sourceIndex] = 0;
     }
 
     public void removeDirectedEdge(T source, T destination) {
@@ -74,6 +74,43 @@ public class GraphMatrix<T extends Comparable<T>> implements Graph<T> {
     @Override
     public boolean hasEdge(T source, T destination) {
         int sourceIndex = vertecies.get(source);
-        int destinationIndex = vertecies.get(destination)
+        int destinationIndex = vertecies.get(destination);
+        return matrix[sourceIndex][destinationIndex] != 0;
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Verticies:");
+        vertecies.enumerate();
+        System.out.println("Matrix:");
+        for (int i = 0; i < vertexCount; i++) {
+            for (int j = 0; j < vertexCount; j++) {
+                System.out.println(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+
+    public int getEdgeWeight(T source, T destination) {
+        int sourceIndex = getVertices().get(source);
+        int destinationIndex = vertecies.get(destination);
+        return matrix[sourceIndex][destinationIndex];
+    }
+
+    public Dictionary<T, Integer> getVertices() {return vertecies;}
+    public int[][] getMatrix() {return matrix;}
+    public int getVertexCount() {return vertexCount;}
+
+    public DynamicArray<T> getNeighbors(T vertex) {
+        DynamicArray<T> neighbors = new DynamicArray<>();
+        int index = vertecies.get(vertex);
+        for (int i = 0; i < vertexCount; i++) {
+            if (matrix[index][i] != 0) {
+                neighbors.add(vertecies.getKey(i));
+            }
+        }
+        return neighbors;
     }
 }

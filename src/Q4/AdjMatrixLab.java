@@ -9,7 +9,7 @@ public class AdjMatrixLab {
     public static <T extends Comparable<T>> void colorGraph(GraphMatrix<T> graph) {
         int vCount = graph.getVertexCount();
         int[][] matrix = graph.getMatrix();
-        Dictionary<T, Integer> verticies = graph.getVerticies();
+        Dictionary<T, Integer> verticies = graph.getVertices();
         int[] result = new int[vCount];
         Arrays.fill(result, -1);
 

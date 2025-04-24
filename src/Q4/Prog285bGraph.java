@@ -25,7 +25,7 @@ public class Prog285bGraph {
             }
             file.close();
 
-            var nodes = graph.getVerticies();
+            var nodes = graph.getVertices();
             var list = new ArrayList<Cl285b>();
             for (var n : nodes) list.add(n);
             for (int i = 0; i < 7; i++) {

@@ -13,7 +13,7 @@ public class GraphList<T extends Comparable<T>> implements Graph<T> {
         }
 
         public void addNeighbor(Node<T> node, int weight) {
-            if (!neighbors.contains(node)) neighbors.insert(node, weight);
+            if (!hasNeighbor(node)) neighbors.insert(node, weight);
         }
 
         public boolean hasNeighbor(Node<T> node) {return neighbors.contains(node);}
@@ -25,7 +25,7 @@ public class GraphList<T extends Comparable<T>> implements Graph<T> {
 
         public String toString() {
             StringBuilder nbArray = new StringBuilder("[ ");
-            nbArray.append(neighbors.entrySet().size() + " ");
+            nbArray.append(neighbors.entrySet().size()).append(" ");
             for (Node<T> x : neighbors.keySet())
                 nbArray.append(x.data).append(" ");
             nbArray.append("]");
@@ -58,7 +58,7 @@ public class GraphList<T extends Comparable<T>> implements Graph<T> {
         }
     }
 
-    public void addDirectedEdge(T source, T destination) { addEdge(source, destination, 1);}
+    public void addDirectedEdge(T source, T destination) { addDirectedEdge(source, destination, 1);}
     public void addDirectedEdge(T source, T destination, int weight) {
         Node<T> sourceNode = getVertex(source);
         Node<T> destinationNode = getVertex(destination);
@@ -95,7 +95,7 @@ public class GraphList<T extends Comparable<T>> implements Graph<T> {
     public boolean hasVertex(T vertex) {return vertices.contains(vertex);}
     public boolean hasEdge(T source, T destination) {
         Node<T> sourceNode = getVertex(source);
-        Node<T> destinationNode = getVertex(source);
+        Node<T> destinationNode = getVertex(destination);
         return sourceNode != null && destinationNode != null &&
                 sourceNode.hasNeighbor(destinationNode);
     }
@@ -104,7 +104,7 @@ public class GraphList<T extends Comparable<T>> implements Graph<T> {
         Node<T> sourceNode = getVertex(source);
         Node<T> destinationNode = getVertex(destination);
         if(sourceNode != null && destinationNode != null)
-            sourceNode.neighbors.get(destinationNode);
+            return sourceNode.neighbors.get(destinationNode);
         return Integer.MAX_VALUE;
     }
 

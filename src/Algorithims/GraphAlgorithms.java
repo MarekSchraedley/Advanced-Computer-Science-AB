@@ -5,6 +5,8 @@ import DataStructures.Graph;
 import DataStructures.PriorityQueue;
 import DataStructures.Tuple;
 
+@SuppressWarnings("uncheked")
+
 public class GraphAlgorithms {
 
     public static <T extends Comparable<T>>
@@ -66,7 +68,7 @@ public class GraphAlgorithms {
         if (current == null) return;
         if (cameFrom.containsKey(current)) {
             reconstructPath(cameFrom, cameFrom.get(current));
-            System.out.println(" -> ");
+            System.out.print(" -> ");
         }
         System.out.println(current);
     }

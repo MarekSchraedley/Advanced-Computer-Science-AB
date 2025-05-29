@@ -51,8 +51,7 @@ public class SentimentAnalysis {
             System.out.println(doc.title());
             var newsHeadlines = doc.select("#mp-itn b a");
             for (var headline : newsHeadlines) {
-                System.out.println(("%s\n\t%s",
-                        headline.attr("title"), headline.absUrl("href"));
+                System.out.printf("%s\n\t%s", headline.attr("title"), headline.absUrl("href"));
             }
             file.close();
             for (int i = 0; i < articleList.size(); i++) {

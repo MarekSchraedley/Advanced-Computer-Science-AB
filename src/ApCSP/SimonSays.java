@@ -144,11 +144,11 @@ public class SimonSays {
         label.setText("Time Left: " + timerCount);
         if (pattern.size() == userPattern.size() || timerCount == 0) {
             playerTimer.stop();
-            roundOver();
+            roundOver(userPattern.size() != pattern.size());
         }
     }
     
-    public void roundOver() {
+    public void roundOver(boolean isSameLength) {
         button1.setEnabled(false);
         button2.setEnabled(false);
         button3.setEnabled(false);
@@ -156,8 +156,7 @@ public class SimonSays {
         button5.setEnabled(false);
         button6.setEnabled(false);
         Boolean isSame = true;
-        // Comparison of userPattern and pattern
-        if (userPattern.size() != pattern.size()) {
+        if (isSameLength) {
             gameOver();
         } else {
             for (int i = 0; i < pattern.size(); i++) {

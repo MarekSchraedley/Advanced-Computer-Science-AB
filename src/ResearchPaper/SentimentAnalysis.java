@@ -47,16 +47,18 @@ public class SentimentAnalysis {
                 }
                 articleList.add(new Article(tempLink, tempPubDate, tempCountry));
             }
-            var doc = Jsoup.connect("https://en.wikipedia.org/").get();
-            System.out.println(doc.title());
-            var newsHeadlines = doc.select("#mp-itn b a");
-            for (var headline : newsHeadlines) {
-                System.out.printf("%s\n\t%s", headline.attr("title"), headline.absUrl("href"));
+            for (int i = 0; i < articleList.size(); i++) {
+                try {
+                    var doc = Jsoup.connect(articleList.get(i).getMyLink()).get();
+                    var UkraineNews = doc.select();
+                    for (var text : UkraineNews) {
+                        System.out.printf(doc.select()));
+                    }
+                } catch (Exception e) {
+
+                }
             }
             file.close();
-            for (int i = 0; i < articleList.size(); i++) {
-                System.out.println(articleList.get(i).getMyLink());
-            }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }

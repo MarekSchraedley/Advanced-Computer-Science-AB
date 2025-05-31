@@ -1,0 +1,26 @@
+public class Prog850b {
+public static void main(String[] args) {
+        try {
+            var file = new Scanner(new File("Langdat/prog850b.txt"));
+            Map<String, Integer> map = new HashMap<String, Integer>();
+            ArrayList<String> list = new ArrayList<>();
+            while (file.hasNext()) {
+                String temp = file.next();
+                if (map.get(temp) == null) {
+                   map.put(temp, file.nextInt()) 
+                   list.add(temp);
+                } else {
+                    map.put(temp, map.get(temp) + file.nextInt());
+                }
+                for (int i = 0; i < 3; i++) {file.next();}
+            }
+            for (int i = 0; i < list.size(); i++) {
+                system.out.print(list.get(i) + "  " + map.get(list.get(i))); 
+            }
+
+            file.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}

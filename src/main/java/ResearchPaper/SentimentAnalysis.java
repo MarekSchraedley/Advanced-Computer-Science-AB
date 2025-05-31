@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import org.jsoup.*;
+import io.github.cdimascio.dotenv.Dotenv;
+import com.google.genai.Client;
+import com.google.genai.types.GenerateContentResponse;
+
+
 
 public class SentimentAnalysis {
     public static class Article {
@@ -22,7 +27,7 @@ public class SentimentAnalysis {
     }
     public static void main(String[] args) {
         try {
-            var file = new Scanner(new File("src/ResearchPaper/ukraine.txt"));
+            var file = new Scanner(new File("Langdat/ukraine.txt"));
             ArrayList<Article> articleList = new ArrayList<>();
             file.nextLine();
             while (file.hasNext()) {
@@ -47,18 +52,33 @@ public class SentimentAnalysis {
                 }
                 articleList.add(new Article(tempLink, tempPubDate, tempCountry));
             }
-            for (int i = 0; i < articleList.size(); i++) {
-                try {
-                    var doc = Jsoup.connect(articleList.get(i).getMyLink()).get();
-                    var UkraineNews = doc.select();
-                    for (var text : UkraineNews) {
-                        System.out.printf(doc.select()));
-                    }
-                } catch (Exception e) {
 
-                }
+
+            for (int i = 0; i < articleList.size(); i++) {
+
+                var doc = Jsoup.connect(articleList.get(i).getMyLink()).get();
+                System.out.println(doc.title());
+//               var newsHeadlines = doc.select("#mp-itn b a");
+//               for (var headline : newsHeadlines) {
+//                   System.out.printf("%s\n\t%s", headline.attr("title"), headline.absUrl("href"));
+//               }
+
+                Dotenv dotenv = Dotenv.configure().directory("Langdat").load();
+                String apiKey = dotenv.get("GEMINI_API_KEY");
+                Client client = Client.builder().apiKey(apiKey).build();
+                String prompt = "Given the following HTML code for a news article, " +
+                        "extract the article text ONLY with no additional commentary. Here is the HTML:\n\n\n";
+                GenerateContentResponse response =
+                        client.models.generateContent("gemini-2.0-flash-001", prompt + doc.body(), null);
+
+                // Gets the text string from the response by the quick accessor method `text()`.
+                System.out.println("Response: " + response.text());
+
             }
             file.close();
+//            for (int i = 0; i < articleList.size(); i++) {
+//                System.out.println(articleList.get(i).getMyLink());
+//            }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }

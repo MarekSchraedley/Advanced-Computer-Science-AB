@@ -28,7 +28,7 @@ public class SentimentAnalysis {
         public String getMyCountry() {return  myCountry;}
     }
     public static void main(String[] args) {
-        try {
+        /*try {
             var file = new Scanner(new File("Langdat/ukraine.txt"));
             ArrayList<Article> articleList = new ArrayList<>();
             file.nextLine();
@@ -73,10 +73,10 @@ public class SentimentAnalysis {
 
                     // Gets the text string from the response by the quick accessor method `text()`.
                     if (response.text() != null) {
-                        System.out.println(articleList.get(i).getMyCountry());
-                        writer.write(articleList.get(i).getMyCountry());
+                        System.out.println("#" + articleList.get(i).getMyCountry());
+                        writer.write("#" + articleList.get(i).getMyCountry() + "\n");
                         System.out.println(response.text());
-                        writer.write(response.text());
+                        writer.write(response.text() + "\n");
                     }
                 } catch (Exception e) {
 
@@ -88,7 +88,7 @@ public class SentimentAnalysis {
 //            }
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
-        }
+        }*/
     }
 
 }

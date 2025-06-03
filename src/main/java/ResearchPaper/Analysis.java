@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import edu.stanford.nlp.*;
 
 public class Analysis {
     public static class ArticleItem {

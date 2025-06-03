@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import edu.stanford.nlp.*;
 
 public class Analysis {
     public static class ArticleItem {
@@ -76,7 +77,7 @@ public class Analysis {
                 String[] line = CommonScentences.nextLine().split("\\s+");
 
                 for (int i = 0; i < line.length-1; i++) {
-                    System.out.print(line[i] + " ");
+                    //System.out.print(line[i]);
                     line[i] = line[i].toLowerCase().replaceAll("\\p{Punct}", "");
                 }
                 int score = Integer.parseInt(line[line.length-1]);
@@ -84,6 +85,12 @@ public class Analysis {
                 double average = 0.0;
                 double value = 0.0;
                 boolean negated = false;
+                for (int i = 0; i < line.length-1; i++) {
+                    System.out.print(line[i]);
+                    if (WordMap.get(line[i] + "#1") != null) {
+                        System.out.print(WordMap.get(line[i] + "#1").getMyPosSentiment() + "|" + WordMap.get(line[i] + "#1").getMyNegSentiment());
+                    }
+                }
                 /*for (int i = 0; i < line.length-1; i++) {
                     if (WordMap.get(line[i] + "#1") != null) {
                         average += (WordMap.get(line[i] + "#1").getMyPosSentiment() - WordMap.get(line[i] + "#1").getMyNegSentiment());

@@ -71,11 +71,12 @@ public class Analysis {
             var CommonScentences = new Scanner(new File("Langdat/yelp_labelled.txt"));
             double successes = 0.0;
             int total = 0;
-            String[] negation = {"no", "not", "neither", "nor", "nobody", "doesnt", "havent", "nowhere"};
+            String[] negation = {"no", "not", "neither", "never", "none", "nothing", "nor", "nobody", "doesnt", "havent", "nowhere", "wasnt", "dont", "wont", "cant", "never", "arent", "isnt", "werent", "couldnt", "mustnt", "shouldnt", "wouldnt", "didnt", "hasnt", "havent", "hadnt", "lack", "without", "hardly", "barely", "scarcely", "fail"};
             while (CommonScentences.hasNext()) {
                 String[] line = CommonScentences.nextLine().split("\\s+");
 
                 for (int i = 0; i < line.length-1; i++) {
+                    System.out.print(line[i] + " ");
                     line[i] = line[i].toLowerCase().replaceAll("\\p{Punct}", "");
                 }
                 int score = Integer.parseInt(line[line.length-1]);
@@ -92,10 +93,21 @@ public class Analysis {
                     value = 0.0;
                     negated = false;
                     if (WordMap.get(line[i] + "#1") != null) {
-                        if (i > 0) {
-                            //negation with curated list
+                        for (int j = 0; j < 5; j++) { //j < window size
+                            if (i > j) {
+                                for (String item : negation) {
+                                    if (line[i-(j+1)].equals(item)) {
+                                        negated = !negated;
+                                        break;
+                                    }
+                                }
+                            }
                         }
-                        average += (WordMap.get(line[i] + "#1").getMyPosSentiment() - WordMap.get(line[i] + "#1").getMyNegSentiment());
+                        if (negated) {
+                            average += (WordMap.get(line[i] + "#1").getMyNegSentiment() - WordMap.get(line[i] + "#1").getMyPosSentiment());
+                        } else {
+                            average += (WordMap.get(line[i] + "#1").getMyPosSentiment() - WordMap.get(line[i] + "#1").getMyNegSentiment());
+                        }
                     }
                 }
                 average = average/(line.length-1);

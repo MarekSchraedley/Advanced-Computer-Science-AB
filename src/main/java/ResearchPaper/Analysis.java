@@ -71,16 +71,30 @@ public class Analysis {
             var CommonScentences = new Scanner(new File("Langdat/yelp_labelled.txt"));
             double successes = 0.0;
             int total = 0;
+            String[] negation = {"no", "not", "neither", "nor", "nobody", "doesnt", "havent", "nowhere"};
             while (CommonScentences.hasNext()) {
                 String[] line = CommonScentences.nextLine().split("\\s+");
+
                 for (int i = 0; i < line.length-1; i++) {
-                    System.out.print(line[i] + " ");
+                    line[i] = line[i].toLowerCase().replaceAll("\\p{Punct}", "");
                 }
                 int score = Integer.parseInt(line[line.length-1]);
                 line[line.length-1] = "";
                 double average = 0.0;
-                for (int i = 0; i < line.length-1; i++) {
+                double value = 0.0;
+                boolean negated = false;
+                /*for (int i = 0; i < line.length-1; i++) {
                     if (WordMap.get(line[i] + "#1") != null) {
+                        average += (WordMap.get(line[i] + "#1").getMyPosSentiment() - WordMap.get(line[i] + "#1").getMyNegSentiment());
+                    }
+                }*/
+                for (int i = 0; i < line.length-1; i++) {
+                    value = 0.0;
+                    negated = false;
+                    if (WordMap.get(line[i] + "#1") != null) {
+                        if (i > 0) {
+                            //negation with curated list
+                        }
                         average += (WordMap.get(line[i] + "#1").getMyPosSentiment() - WordMap.get(line[i] + "#1").getMyNegSentiment());
                     }
                 }

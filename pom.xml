@@ -14,6 +14,12 @@
         <dependency>
             <groupId>edu.stanford.nlp</groupId>
             <artifactId>stanford-corenlp</artifactId>
+            <classifier>models</classifier>
+            <version>4.5.9</version>
+        </dependency>
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
             <version>4.5.9</version>
         </dependency>
         <dependency>
